@@ -1,0 +1,840 @@
+<style type="text/css">.schedule-table tr td:nth-child(2) {
+		text-align: center;
+	}
+	
+	tr.nlgoh-event td:first-child:after, .nlgoh-icon {
+		content: "star";
+		display: inline-block;
+		height: 1em;
+		width: 1em;
+		margin-left: 0.25em;
+		background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IgogICAgIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIgogICAgIHZpZXdCb3g9IjAgMCA1MCA1MCIKICAgICBzdHlsZT0iZmlsbDojMTExMTExOyI+ICAgIDxwYXRoIGQ9Ik0xMC4yLDQ4LjZjLTAuMiwwLTAuNC0wLjEtMC42LTAuMmMtMC4zLTAuMi0wLjUtMC43LTAuNC0xLjFsNC40LTE2LjRMMC40LDIwLjJDMCwyMC0wLjEsMTkuNSwwLDE5LjEgYzAuMS0wLjQsMC41LTAuNywwLjktMC43bDE3LTAuOWw2LjEtMTUuOUMyNC4yLDEuMywyNC42LDEsMjUsMWMwLjQsMCwwLjgsMC4zLDAuOSwwLjZsNi4xLDE1LjlsMTcsMC45YzAuNCwwLDAuOCwwLjMsMC45LDAuNyBjMC4xLDAuNCwwLDAuOC0wLjMsMS4xTDM2LjQsMzAuOWw0LjQsMTYuNGMwLjEsMC40LDAsMC44LTAuNCwxLjFjLTAuMywwLjItMC44LDAuMy0xLjEsMEwyNSwzOS4ybC0xNC4zLDkuMiBDMTAuNSw0OC42LDEwLjQsNDguNiwxMC4yLDQ4LjZ6Ij48L3BhdGg+PC9zdmc+') 50% 50% no-repeat;
+		background-size: 100%;
+		vertical-align: -0.13em;
+		text-indent: -10000px;
+		color: transparent;
+	}
+	
+	tr.charity-event td:first-child:after, .charity-icon {
+		content: "pawprint";
+		display: inline-block;
+		height: 1em;
+		width: 1em;
+		margin-left: 0.25em;
+		background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IgogICAgIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIgogICAgIHZpZXdCb3g9IjAgMCA1MCA1MCIKICAgICBzdHlsZT0iZmlsbDojMTExMTExOyI+PGcgaWQ9InN1cmZhY2UxIj48cGF0aCBzdHlsZT0iICIgZD0iTSAxOC4xNTYyNSAyIEMgMTMuNTAzOTA2IDIgMTEgNi42MjEwOTQgMTEgMTAuOTY4NzUgQyAxMSAxNC40MTQwNjMgMTMuNzE0ODQ0IDIxIDE3Ljk2ODc1IDIxIEMgMjAuNzIyNjU2IDIxIDI0IDE5LjA1MDc4MSAyNCA5Ljc4MTI1IEMgMjQgNS43MDcwMzEgMjEuMjEwOTM4IDIgMTguMTU2MjUgMiBaIE0gMzMuNzUgMiBDIDI4LjY4NzUgMiAyNiA3LjA3ODEyNSAyNiAxMC43NSBDIDI2IDEzLjY2Nzk2OSAyNy4xNDg0MzggMjIgMzIuMjUgMjIgQyAzNy4yODEyNSAyMiA0MCAxNi4xMDE1NjMgNDAgMTAuNTYyNSBDIDQwIDQuOTY4NzUgMzYuMzY3MTg4IDIgMzMuNzUgMiBaIE0gNi43MTg3NSAxOCBDIDMuMzgyODEzIDE4IDAgMjIuODc4OTA2IDAgMjcuNjU2MjUgQyAwIDMxLjA2MjUgMi41NjI1IDM2IDYuNTYyNSAzNiBDIDEwLjU5NzY1NiAzNiAxMyAzMC43NSAxMyAyNS42ODc1IEMgMTMgMjEuODAwNzgxIDkuODgyODEzIDE4IDYuNzE4NzUgMTggWiBNIDQ1LjA5Mzc1IDE4IEMgNDIuNDg4MjgxIDE4LjA1NDY4OCAzOS44MjAzMTMgMjAuMzc1IDM3LjUgMjQuNzE4NzUgQyAzNS44ODI4MTMgMjcuNzQyMTg4IDM1LjU1ODU5NCAzMC42Mjg5MDYgMzYuNTYyNSAzMi44NDM3NSBDIDM3LjI2NTYyNSAzNC4zOTQ1MzEgMzguNTc0MjE5IDM1LjQ4NDM3NSA0MC4yNSAzNS44NzUgQyA0MC42Mjg5MDYgMzUuOTY0ODQ0IDQxLjAxOTUzMSAzNiA0MS40MDYyNSAzNiBDIDQ0LjUzNTE1NiAzNiA0Ny42MDkzNzUgMzMuMDQ2ODc1IDQ5LjQwNjI1IDI4LjI4MTI1IEMgNTAuMzMyMDMxIDI1LjgxMjUgNTAuMTYwMTU2IDIyLjY3OTY4OCA0OSAyMC41IEMgNDguMzEyNSAxOS4yMDcwMzEgNDcuMzU1NDY5IDE4LjM5NDUzMSA0Ni4yMTg3NSAxOC4xMjUgQyA0NS44NTE1NjMgMTguMDM5MDYzIDQ1LjQ2NDg0NCAxNy45OTIxODggNDUuMDkzNzUgMTggWiBNIDI0LjIxODc1IDI3IEMgMjEuMDE5NTMxIDI3IDE5IDI5LjM3ODkwNiAxNi44NzUgMzEuOTA2MjUgQyAxNi4xNzU3ODEgMzIuNzQyMTg4IDE1LjQ2NDg0NCAzMy42MDE1NjMgMTQuNjU2MjUgMzQuNDM3NSBDIDEzLjY4MzU5NCAzNS40NDkyMTkgMTIuNjc1NzgxIDM2LjIyMjY1NiAxMS44MTI1IDM2LjkwNjI1IEMgOS43NjE3MTkgMzguNTI3MzQ0IDggMzkuOTQxNDA2IDggNDMuMTU2MjUgQyA4IDQ2LjA2MjUgMTAuMjAzMTI1IDQ5IDE0LjQwNjI1IDQ5IEMgMTYuNzI2NTYzIDQ5IDE4LjQwNjI1IDQ4LjQ5MjE4OCAyMC4wMzEyNSA0OCBDIDIxLjQ3MjY1NiA0Ny41NjI1IDIyLjgzMjAzMSA0Ny4xNTYyNSAyNC41NjI1IDQ3LjE1NjI1IEMgMjYuNDQ5MjE5IDQ3LjE1NjI1IDI4LjE1MjM0NCA0Ny40NjQ4NDQgMjkuODEyNSA0Ny43ODEyNSBDIDMxLjQzMzU5NCA0OC4wODk4NDQgMzMuMTIxMDk0IDQ4LjQzNzUgMzQuOTA2MjUgNDguNDM3NSBDIDM5LjYxMzI4MSA0OC40Mzc1IDQyIDQ2LjQ4NDM3NSA0MiA0Mi42ODc1IEMgNDIgMzkuNzg1MTU2IDM5LjUxMTcxOSAzOC42OTE0MDYgMzcuMzEyNSAzNy43MTg3NSBDIDM1Ljg1OTM3NSAzNy4wNzQyMTkgMzQuMzYzMjgxIDM2LjQwNjI1IDMzLjQzNzUgMzUuMjgxMjUgQyAzMi42NzE4NzUgMzQuMzQ3NjU2IDMxLjk4NDM3NSAzMy4zNzEwOTQgMzEuMzQzNzUgMzIuNDA2MjUgQyAyOS40OTYwOTQgMjkuNjI4OTA2IDI3Ljc3NzM0NCAyNyAyNC4yMTg3NSAyNyBaICI+PC9wYXRoPjwvZz48L3N2Zz4=') 50% 50% no-repeat;
+		background-size: 100%;
+		vertical-align: -0.13em;
+		text-indent: -10000px;
+		color: transparent;
+	}
+	
+	.charity-icon, .nlgoh-icon {
+		margin-left: 0em !important;
+	}
+
+    .anchor-link-target {
+        height: 0;
+        position: relative;
+        width: 0;
+        top: -5em;
+    }
+
+    .schedule-table {
+        table-layout: fixed;
+    }
+
+    .schedule-table td:first-child {
+        width: 50%;
+    }
+
+    .schedule-table td:nth-child(2) {
+        width: 30%;
+    }
+
+    .schedule-table td:nth-child(3) {
+        width: 20%;
+        text-align: center;
+    }
+
+    .schedule-link-container {
+        margin-top: 0.25em;
+    }
+
+    .schedule-link-container a.schedule-jump-link {
+        display: inline-block;
+        margin-top: 0.25em;
+        padding: 0.5em;
+        background: #ec7036;
+        color: #fafafa!important;
+    }
+</style>
+<p>Below are the schedules for each of the convention days listed chronologically, with separate schedules for the <a href="#dealersden">Dealers&#39; Den</a>, <a href="#artshow">Art Show</a>, <a href="#arcade">Arcade Hall</a>, <a href="#conops">Conops</a> and <a href="#dining">dining opportunities</a> listed below.</p>
+
+<p>Charity events are marked with a <span aria-label="pawprint" class="charity-icon" title="pawprint"> </span>, and Guest of Honor/Northern Light events are marked with a <span aria-label="star" class="nlgoh-icon" title="star"> </span>.</p>
+
+<p><em>Note: These times are not final, changes or modifications to the schedule may occur.</em></p>
+
+<h4>Jump to schedule for...</h4>
+
+<div class="schedule-link-container"><a class="schedule-jump-link" href="#tuesday">Tuesday</a> <a class="schedule-jump-link" href="#wednesday">Wednesday</a> <a class="schedule-jump-link" href="#thursday">Thursday</a> <a class="schedule-jump-link" href="#friday">Friday</a> <a class="schedule-jump-link" href="#saturday">Saturday</a> <a class="schedule-jump-link" href="#sunday">Sunday</a> <a class="schedule-jump-link" href="#dealersden">Dealers&#39; Den</a> <a class="schedule-jump-link" href="#artshow">Art Show</a> <a class="schedule-jump-link" href="#arcade">Arcade Hall</a> <a class="schedule-jump-link" href="#registration">Registration</a> <a class="schedule-jump-link" href="#conops">Conops</a> <a class="schedule-jump-link" href="#spa">Spa</a> <a class="schedule-jump-link" href="#dining">Dining opportunities</a></div>
+
+<div class="anchor-link-target" id="tuesday"> </div>
+
+<h2>Tuesday, February 27</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Stockholm Visit</td>
+			<td>15:30 - 21:00</td>
+			<td>Outside</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/GhostWalk" target="_BLANK">Stockholm Ghost Walk</a></td>
+			<td>19:00 - 20:30</td>
+			<td>J&auml;rnstorget Old Town</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="wednesday"> </div>
+
+<h2>Wednesday, February 28</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Opening Ceremony</td>
+			<td>15:00 - 16:30</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr class="charity-event">
+			<td>Lottery Booth</td>
+			<td>16:00 - 20:00</td>
+			<td>Lobby</td>
+		</tr>
+		<tr>
+			<td>This is Your First Furry Con?</td>
+			<td>16:30 - 17:30</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>Panel Holding Training</td>
+			<td>17:00 - 18:00</td>
+			<td>Audience Panel</td>
+		</tr>
+		<tr class="charity-event">
+			<td>Meet the Charity</td>
+			<td>18:00 - 19:00</td>
+			<td>Event Hall Lobby</td>
+		</tr>
+		<tr>
+			<td>D&D Tournament</td>
+			<td>18:00 - 21:00</td>
+			<td>Board Panel</td>
+		</tr>
+		<tr class="nlgoh-event">
+			<td>Meet the Guests</td>
+			<td>19:00 - 20:00</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>How to be a Demon</td>
+			<td>20:00 - 21:00</td>
+			<td>Audience Panel</td>
+		</tr>
+		<tr>
+			<td>Jackbox Event</td>
+			<td>20:00 - 22:00</td>
+			<td>Bar</td>
+		</tr>
+		<tr>
+			<td>Fursuit Charades Sign Up</td>
+			<td>20:00 - 20:30</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>Fursuit Charades</td>
+			<td>20:30 - 22:00</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>Railfur Event</td>
+			<td>21:00 - 22:00</td>
+			<td>Secluded Panel</td>
+		</tr>
+		<tr>
+			<td>Fureoke</td>
+			<td>22:00 - 01:00</td>
+			<td>Main Stage</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="thursday"> </div>
+
+<h2>Thursday, March 1</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>D&D Tournament</td>
+			<td>10:00 - 13:00</td>
+			<td>Board Panel</td>
+		</tr>
+		<tr>
+			<td>Meet a Greymuzzle</td>
+			<td>11:00 - 12:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Photo Shoot</td>
+			<td>13:00 - 15:30</td>
+			<td>Infra Gallerian</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/TempleOfTemptation" target="_BLANK">Maid Caf&eacute;: Temple of Temptations</a></td>
+			<td>13:00 - 17:00</td>
+			<td>Garden</td>
+		</tr>
+		<tr class="nlgoh-event">
+			<td>Hiding the Human Figure</td>
+			<td>14:00 - 15:30</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>How to Build a Haunt</td>
+			<td>14:00 - 17:00</td>
+			<td>School Panel</td>
+		</tr>
+		<tr>
+			<td>NERF Gun War</td>
+			<td>14:00 - 17:00</td>
+			<td>Event Hall Lobby</td>
+		</tr>
+		<tr>
+			<td>Splatoon Meetup</td>
+			<td>14:00 - 15:00</td>
+			<td>Secluded Panel</td>
+		</tr>
+		<tr>
+			<td>Storytellers’ Circle</td>
+			<td>14:00 - 15:00</td>
+			<td>Circle Panel</td>
+		</tr>
+		<tr class="charity-event">
+			<td>Magic of Charity</td>
+			<td>15:30 - 16:30</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Trans* Furs Meet & Greet</td>
+			<td>15:00 - 16:00</td>
+			<td>India</td>
+		</tr>
+		<tr>
+			<td>Photofurs Meet & Greet</td>
+			<td>16:00 - 17:00</td>
+			<td>Mixed Room</td>
+		</tr>
+		<tr>
+			<td>Vore Meet & (Gr)eat</td>
+			<td>16:00 - 17:00</td>
+			<td>Circle Panel</td>
+		</tr>
+		<tr>
+			<td>Photo Shoot</td>
+			<td>17:00 - 18:00</td>
+			<td>Infra Gallerian</td>
+		</tr>
+		<tr>
+			<td>Eurovision Song Contest Meet & Greet</td>
+			<td>17:00 - 18:00</td>
+			<td>Secluded Panel</td>
+		</tr>
+		<tr>
+			<td>Taco Buffet</td>
+			<td>18:00 - 21:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Cubfur Meet & Greet</td>
+			<td>18:00 - 20:00</td>
+			<td>Audience Panel</td>
+		</tr>
+		<tr>
+			<td>Strut Your Stuff</td>
+			<td>18:00 - 20:00</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Cattitude and Puppularity</td>
+			<td>18:30 - 19:30</td>
+			<td>Mixed Room</td>
+		</tr>
+		<tr>
+			<td>Stage Anxiety, What Really Happens</td>
+			<td>19:00 - 20:00</td>
+			<td>Secluded Panel</td>
+		</tr>
+		<tr>
+			<td>Rick and Morty Fans Meet & Greet</td>
+			<td>20:00 - 21:00</td>
+			<td>Mixed Room</td>
+		</tr>
+		<tr>
+			<td>Drunk Drawing with Frenzee</td>
+			<td>21:00 - 22:00</td>
+			<td>Secluded Panel</td>
+		</tr>
+		<tr>
+			<td>Screening of Rimba Racer</td>
+			<td>21:00 - 01:00</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>Disco</td>
+			<td>21:00 - 02:00</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Cats and Boxes</td>
+			<td>22:00 - 23:00</td>
+			<td>Event Square</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="friday"> </div>
+
+<h2>Friday, March 2</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td><a href="/Program/BouncyCastleFrenzy" target="_BLANK">Bouncy Castles Course</a></td>
+			<td>10:30 - 23:00</td>
+			<td>Event Hall</td>
+		</tr>
+		<tr class="nlgoh-event">
+			<td>How to Make Ends Meet</td>
+			<td>14:30 - 15:30</td>
+			<td>Meeting Panel</td>
+		</tr>
+		<tr>
+			<td>International Snack Exchange</td>
+			<td>12:00 - 13:00</td>
+			<td>Event Hall Lobby</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/OpenHouse" target="_BLANK">Open House</a></td>
+			<td>13:00 - 18:00</td>
+			<td>Ballroom, Event Hall</td>
+		</tr>
+		<tr>
+			<td>Fursuit Parade</td>
+			<td>13:00 - 14:00</td>
+			<td>Fursuit Lounge</td>
+		</tr>
+		<tr>
+			<td>Fursuit Group Photo</td>
+			<td>14:00 - 14:30</td>
+			<td>Outside</td>
+		</tr>
+		<tr>
+			<td>Fursuit Zoo</td>
+			<td>14:30 - 15:30</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/TempleOfTemptation" target="_BLANK">Maid Caf&eacute;: Temple of Temptations</a></td>
+			<td>14:30 - 18:00</td>
+			<td>Garden</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/EatSouthAmerica" target="_BLANK">Eat South America</a></td>
+			<td>15:00 - 16:30</td>
+			<td>Ocean Room</td>
+		</tr>
+		<tr>
+			<td>Electronics Workshop</td>
+			<td>15:00 - 16:00</td>
+			<td>Secluded Panel</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/BouncyCastleFrenzy" target="_BLANK">Bouncy Castles Course, Fursuiters vs Humans</a></td>
+			<td>15:00 - 16:00</td>
+			<td>Event Hall</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/OpenHouse" target="_BLANK">Vad h&aring;ller vi p&aring; med?</a></td>
+			<td>15:30 - 16:30</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Photo Shoot</td>
+			<td>16:00 - 18:00</td>
+			<td>Infra Gallerian</td>
+		</tr>
+		<tr>
+			<td>Guess the Story</td>
+			<td>16:00 - 17:00</td>
+			<td>Mixed Room</td>
+		</tr>
+		<tr class="charity-event">
+			<td><a href="/Program/CharityConcert" target="_BLANK">Charity Concert</a></td>
+			<td>17:00 - 18:30</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>D&D Tournament</td>
+			<td>18:00 - 21:00</td>
+			<td>Board Panel</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/BouncyCastleFrenzy" target="_BLANK">Bouncy Castles Course 2, The Bouncening</a></td>
+			<td>19:00 - 20:00</td>
+			<td>Event Hall</td>
+		</tr>
+		<tr class="nlgoh-event">
+			<td>Patterning From a Miniature Figure</td>
+			<td>20:00 - 21:00</td>
+			<td>Meeting Panel</td>
+		</tr>
+		<tr>
+			<td>Screening of Rimba Racer</td>
+			<td>21:30 - 00:30</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>Disco</td>
+			<td>21:00 - 02:00</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Fureoke</td>
+			<td>22:00 - 01:00</td>
+			<td>Meeting Panel</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="saturday"> </div>
+
+<h2>Saturday, March 3</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>D&D Tournament</td>
+			<td>10:00 - 13:00</td>
+			<td>Board Panel</td>
+		</tr>
+		<tr>
+			<td>D&D Tournament</td>
+			<td>11:00 - 14:00</td>
+			<td>Board Panel</td>
+		</tr>
+		<tr>
+			<td>Music Caf&eacute;</td>
+			<td>12:00 - 13:30</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Convention Photo</td>
+			<td>13:00 - 13:30</td>
+			<td>Outside</td>
+		</tr>
+		<tr>
+			<td>Photo Shoot</td>
+			<td>13:00 - 15:30</td>
+			<td>Infra Gallerian</td>
+		</tr>
+		<tr>
+			<td>Furry Lifestyle</td>
+			<td>14:00 - 15:30</td>
+			<td>School Panel</td>
+		</tr>
+		<tr>
+			<td>Ice Cream Buffet</td>
+			<td>14:00 - 17:00</td>
+			<td>Garden</td>
+		</tr>
+		<tr>
+			<td>Math of the Mayans</td>
+			<td>15:00 - 16:00</td>
+			<td>Meeting Panel</td>
+		</tr>
+		<tr>
+			<td>Fursuit Games</td>
+			<td>15:30 - 16:30</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Photo Shoot</td>
+			<td>16:00 - 18:00</td>
+			<td>Infra Gallerian</td>
+		</tr>
+		<tr>
+			<td>Whose Improv is it Anyway?</td>
+			<td>16:00 - 18:00</td>
+			<td>School Panel</td>
+		</tr>
+		<tr>
+			<td>Once Upon an NFC - NFC Behind the Scenes</td>
+			<td>17:00 - 18:00</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr class="nlgoh-event">
+			<td>Digital Painting Demo</td>
+			<td>18:00 - 19:00</td>
+			<td>Meeting Panel</td>
+		</tr>
+		<tr>
+			<td>Paws on Fire - Ice Edition</td>
+			<td>18:00 - 20:00</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>D&D Tournament</td>
+			<td>18:00 - 21:00</td>
+			<td>Board Panel</td>
+		</tr>
+		<tr class="charity-event">
+			<td>Art Auction</td>
+			<td>19:00 - 20:00</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>Furries got Talent</td>
+			<td>21:00 - 23:00</td>
+			<td>Main Stage</td>
+		</tr>
+		<tr>
+			<td>Disco</td>
+			<td>21:00 - 02:00</td>
+			<td>Ballroom</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="sunday"> </div>
+
+<h2>Sunday, March 4</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr class="charity-event">
+			<td>Charity Lottery Event</td>
+			<td>11:30 - 12:30</td>
+			<td>Fursuit Lounge</td>
+		</tr>
+		<tr>
+			<td>Closing Ceremony</td>
+			<td>13:00 - 14:00</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Feedback Session</td>
+			<td>14:00 - 15:00</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/DyingDogDinner" target="_BLANK">Dying Dog Dinner</a></td>
+			<td>17:00 - 20:00</td>
+			<td>Ballroom</td>
+		</tr>
+		<tr>
+			<td>Dead Dog Party</td>
+			<td>22:00 - 00:30</td>
+			<td>Ballroom</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="dealersden"> </div>
+
+<h2 id="dd-header">Dealers’ Den</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Dealers’ Den (Super Sponsors)</td>
+			<td>Thursday 12:00 - 13:00</td>
+			<td>Dealers’ Den</td>
+		</tr>
+		<tr>
+			<td>Dealers’ Den</td>
+			<td>Thursday 13:00 - 17:00</td>
+			<td>Dealers’ Den</td>
+		</tr>
+		<tr>
+			<td>Dealers’ Den</td>
+			<td>Friday 11:00 - 13:00 and 14:00 - 17:00</td>
+			<td>Dealers’ Den</td>
+		</tr>
+		<tr>
+			<td>Dealers’ Den</td>
+			<td>Saturday 11:00 - 13:00 and 14:00 - 17:00</td>
+			<td>Dealers’ Den</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="artshow"> </div>
+
+<h2 id="artshow-header">Art Show</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Art Show (Super Sponsors)</td>
+			<td>Thursday 14:00 - 15:00</td>
+			<td>Art Show</td>
+		</tr>
+		<tr>
+			<td>Art Show</td>
+			<td>Thursday 15:00 - 16:30</td>
+			<td>Art Show</td>
+		</tr>
+		<tr>
+			<td>Art Show</td>
+			<td>Friday 10:00 - 13:00 and 14:00 - 16:00</td>
+			<td>Art Show</td>
+		</tr>
+		<tr>
+			<td>Art Show</td>
+			<td>Saturday 10:00 - 13:00 and 14:00 - 16:00</td>
+			<td>Art Show</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="arcade"> </div>
+
+<h2 id="arcade-header">Arcade Hall</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td><a href="/Program/Arcade" target="_BLANK">Arcade</a></td>
+			<td>Thursday 14:00 - 00:00</td>
+			<td>Arcade Hall</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/Arcade" target="_BLANK">Arcade</a></td>
+			<td>Friday 14:00 - 00:00</td>
+			<td>Arcade Hall</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/Arcade" target="_BLANK">Arcade</a></td>
+			<td>Saturday 14:00 - 00:00</td>
+			<td>Arcade Hall</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="registration"> </div>
+
+<h2 id="registration-header">Registration</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Registration</td>
+			<td>Tuesday 09:00 - 01:00</td>
+			<td>Event Hall Lobby</td>
+		</tr>
+		<tr>
+			<td>Registration</td>
+			<td>Wednesday 10:00 - 15:00 and 16:30 - 20:00</td>
+			<td>Event Hall Lobby</td>
+		</tr>
+		<tr>
+			<td>Registration, all other times</td>
+			<td>09:00 - 01:00</td>
+			<td>ConOps</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="conops"> </div>
+
+<h2 id="conops-header">ConOps</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Wednesday</td>
+			<td>09:00 - 01:00</td>
+			<td>ConOps</td>
+		</tr>
+		<tr>
+			<td>Thursday</td>
+			<td>09:00 - 01:00</td>
+			<td>ConOps</td>
+		</tr>
+		<tr>
+			<td>Friday</td>
+			<td>09:00 - 01:00</td>
+			<td>ConOps</td>
+		</tr>
+		<tr>
+			<td>Saturday</td>
+			<td>09:00 - 01:00</td>
+			<td>ConOps</td>
+		</tr>
+		<tr>
+			<td>Sunday</td>
+			<td>09:00 - 01:00</td>
+			<td>ConOps</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="spa"> </div>
+
+<h2 id="spa-header">Spa</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Monday to Thursday</td>
+			<td>06:00 - 22:00</td>
+			<td>Spa</td>
+		</tr>
+		<tr>
+			<td>Friday to Sunday</td>
+			<td>06:00 - 02:00</td>
+			<td>Spa</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="anchor-link-target" id="dining"> </div>
+
+<h2 id="dining-header">Dining</h2>
+
+<table class="schedule-table">
+	<tbody>
+		<tr>
+			<td>Breakfast</td>
+			<td>Tuesday 06:30 - 09:30</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>&Agrave; la Carte</td>
+			<td>Tuesday 16:00 - 22:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Breakfast</td>
+			<td>Wednesday 06:30 - 09:30</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Wednesday Waffles</td>
+			<td>Wednesday 15:00 - 18:00</td>
+			<td>Bar</td>
+		</tr>
+		<tr>
+			<td>&Agrave; la Carte</td>
+			<td>Wednesday 16:00 - 22:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Breakfast <b>[1]</b></td>
+			<td>Thursday 06:30 - 11:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/TempleOfTemptation" target="_BLANK">Maid Caf&eacute;: Temple of Temptations</a></td>
+			<td>Thursday 13:00 - 17:00</td>
+			<td>Garden</td>
+		</tr>
+		<tr>
+			<td><b>No &Agrave; la Carte</b></td>
+			<td><b>CLOSED Saturday</b></td>
+			<td><b>Restaurant CLOSED</b></td>
+		</tr>
+		<tr>
+			<td>Taco Buffet</td>
+			<td>Thursday 18:00 - 21:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Breakfast</td>
+			<td>Friday 09:00 - 11:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Pizza</td>
+			<td>Friday 11:00 - 23:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>International Snack Exchange</td>
+			<td>Friday 12:00 - 13:00</td>
+			<td>Event Hall Lobby</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/TempleOfTemptation" target="_BLANK">Maid Caf&eacute;: Temple of Temptations</a></td>
+			<td>Friday 14:30 - 18:00</td>
+			<td>Garden</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/EatSouthAmerica" target="_BLANK">Eat South America</a></td>
+			<td>Friday 15:00 - 16:30</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Pasta and Soup</td>
+			<td>Friday 16:00 - 21:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>&Agrave; la Carte</td>
+			<td>Friday 16:00 - 23:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Breakfast</td>
+			<td>Saturday 09:00 - 11:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Pizza</td>
+			<td>Saturday 11:00 - 23:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Ice Cream Buffet</td>
+			<td>Saturday 14:00 - 17:00</td>
+			<td>Garden</td>
+		</tr>
+		<tr>
+			<td>Pasta and Soup</td>
+			<td>Saturday 16:00 - 21:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>&Agrave; la Carte</td>
+			<td>Saturday 16:00 - 23:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td>Breakfast <b>[2]</b></td>
+			<td>Sunday 09:00 - 11:00</td>
+			<td>Restaurant</td>
+		</tr>
+		<tr>
+			<td><a href="/Program/DyingDogDinner" target="_BLANK">Dying Dog Dinner</a></td>
+			<td>Sunday 17:00 - 20:00</td>
+			<td>Ballroom</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><b>[1]</b> Eat well on Thursday, the kitchen is then closed to cover the taco buffet.</p>
+
+<p><b>[2]</b> Load up well on Sunday, the kitchen then prepares the Dying Dog Dinner.</p>
